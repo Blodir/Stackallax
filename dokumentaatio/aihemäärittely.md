@@ -8,3 +8,6 @@ Pelin tavoite on selviytyä mahdollisimman pitkälle häviämättä. Ainoa käyt
 * Pelaaja
 	* Pelaa peliä
 	* Tarkastele highscoreja
+	
+## Lisähuomioita
+* Koodi englanniksi harjoituksen vuoksi + voi kysyä apua ulkomaalaisiltakin
