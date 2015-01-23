@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stackallax.entities;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import stackallax.maths.Vector2;
 
@@ -46,12 +42,14 @@ public class Player {
     public Vector2 getMovement() {
         return movement;
     }
-    
+
     public void update() {
-        
+        x += movement.getX();
+        y += movement.getY();
     }
-    
+
     public void draw(Graphics2D g) {
-        
+        g.setColor(Color.RED);
+        g.fillRect(getX(), getY(), 10, 10);
     }
 }

@@ -1,0 +1,5 @@
+[Game]-1[Player]
+[Player]-0..1[Vector2]
+[Game]-1[Spawner]
+[Spawner]-*[Obstacle]
+[Game]-[Highscore]
