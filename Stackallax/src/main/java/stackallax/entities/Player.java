@@ -50,6 +50,6 @@ public class Player {
 
     public void draw(Graphics2D g) {
         g.setColor(Color.RED);
-        g.fillRect(getX(), getY(), 10, 10);
+        g.fillRect(getX(), getY(), 50, 50);
     }
 }
