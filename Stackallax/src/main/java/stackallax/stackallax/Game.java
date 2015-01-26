@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import stackallax.entities.Player;
+import stackallax.graphics.BackgroundManager;
 import stackallax.maths.Vector2;
 
 /**
@@ -19,6 +20,7 @@ public class Game extends JPanel implements Runnable {
     public static final Dimension windowSize = new Dimension(500, 500);
 
     private Player player;
+    private BackgroundManager backgroundManager;
 
     private int FPS;
 
@@ -37,6 +39,7 @@ public class Game extends JPanel implements Runnable {
     public void start() {
         player = new Player(50, 450);
         player.setMovement(new Vector2(0, 0));
+        backgroundManager = new BackgroundManager();
         isRunning = true;
         new Thread(this).start();
     }
@@ -57,12 +60,14 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
+        backgroundManager.update();
         player.update();
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        backgroundManager.paint((Graphics2D) g);
         if (player != null) {
             player.draw((Graphics2D) g);
         }
