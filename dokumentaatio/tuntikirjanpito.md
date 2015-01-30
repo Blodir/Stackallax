@@ -9,3 +9,4 @@ huom: opiskelua projektia varten (paljon) ei otettu mukaan tunti määriin
 	* 23.1.15 - 1 tunti - testit + pit
 * Deadline 3
 	* 26.1.15 - 1 tunti backgroundeja!
+	* 29.1.15 - 1 tunti background + inputlistener
