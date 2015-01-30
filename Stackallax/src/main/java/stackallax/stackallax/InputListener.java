@@ -24,8 +24,7 @@ public class InputListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            //player.doSomething();
-            System.out.println("did something!");
+            player.jump();
         }
     }
 

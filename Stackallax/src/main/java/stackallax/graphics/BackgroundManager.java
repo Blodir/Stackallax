@@ -45,7 +45,5 @@ public class BackgroundManager {
     public void paint(Graphics2D g) {
         backOne.draw(g);
         backTwo.draw(g);
-        System.out.println("backone" + backOne.getX() + ", " + backOne.getY());
-        System.out.println("backtwo" + backTwo.getX() + ", " + backTwo.getY());
     }
 }

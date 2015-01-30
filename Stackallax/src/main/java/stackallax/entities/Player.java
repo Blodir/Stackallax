@@ -3,6 +3,7 @@ package stackallax.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import stackallax.maths.Vector2;
+import stackallax.stackallax.Game;
 
 /**
  *
@@ -44,8 +45,22 @@ public class Player {
     }
 
     public void update() {
+        //Simple collision detection with ground
+        if (getY() < Game.WINDOWSIZE.getHeight() - 50) {
+            movement.setY(movement.getY() + Game.GRAVITY);
+        }
         x += movement.getX();
         y += movement.getY();
+        if (getY() >= Game.WINDOWSIZE.getHeight() - 50) {
+            setY((int) (Game.WINDOWSIZE.getHeight() - 50));
+            movement.setY(0);
+        }
+    }
+
+    public void jump() {
+        if (movement.getY() == 0) {
+            movement.setY(-10);
+        }
     }
 
     public void draw(Graphics2D g) {

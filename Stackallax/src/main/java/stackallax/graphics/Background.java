@@ -11,6 +11,7 @@ import stackallax.maths.Vector2;
  * @author Pyry
  */
 public class Background {
+
     private BufferedImage image;
 
     private int x;
@@ -20,11 +21,12 @@ public class Background {
     public Background(int x, int y) {
         this.x = x;
         this.y = y;
-        
+
         try {
-            image = ImageIO.read(new File(getClass().getResource("background.png").toURI()));
+            image = ImageIO.read(new File("background.png"));
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        catch (Exception e) { System.out.println(e); }
     }
 
     public void setX(int x) {
@@ -50,10 +52,9 @@ public class Background {
     public Vector2 getMovement() {
         return movement;
     }
-    
+
     public int getImageWidth() {
-        //return image.getWidth();
-        return 500;
+        return image.getWidth();
     }
 
     public void update() {
@@ -63,6 +64,6 @@ public class Background {
 
     public void draw(Graphics2D g) {
         //draw background here
-        //g.drawImage(image, getX(), getY(), null);
+        g.drawImage(image, getX(), getY(), null);
     }
 }

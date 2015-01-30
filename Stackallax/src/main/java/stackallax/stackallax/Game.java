@@ -17,8 +17,9 @@ import stackallax.maths.Vector2;
 public class Game extends JPanel implements Runnable {
 
     private static final String title = "Stackallax";
-    public static final Dimension windowSize = new Dimension(500, 500);
-    
+    public static final Dimension WINDOWSIZE = new Dimension(500, 500);
+    public static final int GRAVITY = 1;
+
     private static JFrame frame;
 
     private Player player;
@@ -32,7 +33,7 @@ public class Game extends JPanel implements Runnable {
     private boolean isRunning;
 
     public Game() {
-        setPreferredSize(windowSize);
+        setPreferredSize(WINDOWSIZE);
         isRunning = false;
         FPS = 60;
         targetTime = 1000 / FPS;
@@ -46,7 +47,7 @@ public class Game extends JPanel implements Runnable {
         isRunning = true;
         new Thread(this).start();
     }
-    
+
     public Player getPlayer() {
         return player;
     }
@@ -62,10 +63,10 @@ public class Game extends JPanel implements Runnable {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        
+
         game.start();
     }
-    
+
     public static JFrame getFrame() {
         return frame;
     }
@@ -78,7 +79,9 @@ public class Game extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        backgroundManager.paint((Graphics2D) g);
+        if (backgroundManager != null) {
+            backgroundManager.paint((Graphics2D) g);
+        }
         if (player != null) {
             player.draw((Graphics2D) g);
         }
