@@ -3,3 +3,7 @@
 [Game]-1[Spawner]
 [Spawner]-*[Obstacle]
 [Game]-[Highscore]
+[CollisionDetector]
+[InputListener]
+[Background]-[BackgroundManager]
+[MapGenerator]

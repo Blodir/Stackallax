@@ -6,6 +6,7 @@
 package stackallax.graphics;
 
 import java.awt.Graphics2D;
+import javax.swing.JFrame;
 import stackallax.maths.Vector2;
 import stackallax.stackallax.Game;
 
@@ -14,11 +15,12 @@ import stackallax.stackallax.Game;
  * @author Pyry
  */
 public class BackgroundManager {
+
     private Background backOne;
     private Background backTwo;
-    
+
     private Vector2 scrollingSpeed;
-    
+
     public BackgroundManager() {
         backOne = new Background(0, 0);
         backTwo = new Background(backOne.getImageWidth(), 0);
@@ -26,11 +28,11 @@ public class BackgroundManager {
         backOne.setMovement(scrollingSpeed);
         backTwo.setMovement(scrollingSpeed);
     }
-    
+
     public void update() {
         backOne.update();
         backTwo.update();
-        
+
         // Move background if out of screen
         if (backOne.getX() + backOne.getImageWidth() <= 0) {
             backOne.setX(backOne.getImageWidth());
@@ -39,7 +41,7 @@ public class BackgroundManager {
             backTwo.setX(backTwo.getImageWidth());
         }
     }
-    
+
     public void paint(Graphics2D g) {
         backOne.draw(g);
         backTwo.draw(g);

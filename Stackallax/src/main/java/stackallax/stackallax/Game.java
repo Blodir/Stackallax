@@ -18,6 +18,8 @@ public class Game extends JPanel implements Runnable {
 
     private static final String title = "Stackallax";
     public static final Dimension windowSize = new Dimension(500, 500);
+    
+    private static JFrame frame;
 
     private Player player;
     private BackgroundManager backgroundManager;
@@ -40,12 +42,17 @@ public class Game extends JPanel implements Runnable {
         player = new Player(50, 450);
         player.setMovement(new Vector2(0, 0));
         backgroundManager = new BackgroundManager();
+        getFrame().addKeyListener(new InputListener(player));
         isRunning = true;
         new Thread(this).start();
     }
+    
+    public Player getPlayer() {
+        return player;
+    }
 
     public static void main(String args[]) {
-        JFrame frame = new JFrame(title);
+        frame = new JFrame(title);
         Game game = new Game();
 
         frame.add(game);
@@ -55,8 +62,12 @@ public class Game extends JPanel implements Runnable {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
+        
         game.start();
+    }
+    
+    public static JFrame getFrame() {
+        return frame;
     }
 
     public void update() {

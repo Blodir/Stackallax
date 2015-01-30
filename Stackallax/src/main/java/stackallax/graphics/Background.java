@@ -2,7 +2,6 @@ package stackallax.graphics;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import javax.imageio.ImageIO;
 import stackallax.maths.Vector2;
@@ -23,7 +22,7 @@ public class Background {
         this.y = y;
         
         try {
-            image = ImageIO.read(new File("background.png"));
+            image = ImageIO.read(new File(getClass().getResource("background.png").toURI()));
         }
         catch (Exception e) { System.out.println(e); }
     }
@@ -53,7 +52,8 @@ public class Background {
     }
     
     public int getImageWidth() {
-        return 500; //IMAGE WIDTH HERE ASDASDASD
+        //return image.getWidth();
+        return 500;
     }
 
     public void update() {
@@ -63,6 +63,6 @@ public class Background {
 
     public void draw(Graphics2D g) {
         //draw background here
-        g.drawImage(image, getX(), getY(), (ImageObserver) g);
+        //g.drawImage(image, getX(), getY(), null);
     }
 }
