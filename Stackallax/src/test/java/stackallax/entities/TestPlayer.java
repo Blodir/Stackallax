@@ -48,7 +48,7 @@ public class TestPlayer {
         assertTrue(player.getY() == 10);
     }
     
-    @Test
+    /*@Test
     public void testMovement() {
         player = new Player(10, 10);
         player.setMovement(new Vector2(10, -10));
@@ -57,7 +57,7 @@ public class TestPlayer {
         }
         assertTrue(player.getX() == 30);
         assertTrue(player.getY() == -10);
-    }
+    }*/
     
     @Test
     public void testGetMovement() {
