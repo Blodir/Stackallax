@@ -19,16 +19,8 @@ public class Player extends Entity {
     }
 
     public void update() {
-        //Simple collision detection with ground
-        if (getY() < Game.WINDOWSIZE.getHeight() - 50) {
-            super.getMovement().setY(super.getMovement().getY() + Game.GRAVITY);
-        }
         super.setX(super.getX() + super.getMovement().getX());
         super.setY(super.getY() + super.getMovement().getY());
-        if (getY() >= Game.WINDOWSIZE.getHeight() - 50) {
-            setY((int) (Game.WINDOWSIZE.getHeight() - 50));
-            super.getMovement().setY(0);
-        }
     }
 
     public void jump() {

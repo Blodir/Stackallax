@@ -8,6 +8,7 @@ package logic;
 import stackallax.entities.Obstacle;
 import stackallax.entities.Player;
 import stackallax.maths.Vector2;
+import stackallax.stackallax.Game;
 
 /**
  *
@@ -23,6 +24,14 @@ public class CollisionDetector {
     }
     
     public boolean update() {
+        //ground collision
+        if (player.getY() >= Game.WINDOWSIZE.height - 50) {
+            player.getMovement().setY(0);
+            player.setY(Game.WINDOWSIZE.height - 50);
+        } else {
+            player.getMovement().setY(player.getMovement().getY() + Game.GRAVITY);
+        }
+        
         for (Obstacle obstacle : obstacleManager.getObstacles()) {
             if (obstacle.getBounds().intersects(player.getBounds())) {
                 //if obstacle intersects player
@@ -31,7 +40,7 @@ public class CollisionDetector {
                     return false; //game over
                 } else {
                     //if player is on top of the obstacle
-                    player.setMovement(new Vector2(0, 0));
+                    player.getMovement().setY(0);
                 }
             }
         }
