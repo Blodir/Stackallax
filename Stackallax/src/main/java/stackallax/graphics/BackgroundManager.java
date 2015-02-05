@@ -24,7 +24,7 @@ public class BackgroundManager {
     public BackgroundManager() {
         backOne = new Background(0, 0);
         backTwo = new Background(backOne.getImageWidth(), 0);
-        scrollingSpeed = new Vector2(-1, 0);
+        scrollingSpeed = new Vector2(-1 * (Game.SPEED / 2), 0);
         backOne.setMovement(scrollingSpeed);
         backTwo.setMovement(scrollingSpeed);
     }

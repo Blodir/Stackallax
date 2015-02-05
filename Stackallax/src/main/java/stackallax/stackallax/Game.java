@@ -19,6 +19,7 @@ public class Game extends JPanel implements Runnable {
     private static final String title = "Stackallax";
     public static final Dimension WINDOWSIZE = new Dimension(500, 500);
     public static final int GRAVITY = 1;
+    public static final int SPEED = 5;
 
     private static JFrame frame;
 

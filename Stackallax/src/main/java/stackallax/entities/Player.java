@@ -9,60 +9,32 @@ import stackallax.stackallax.Game;
  *
  * @author Pyry
  */
-public class Player {
-
-    private int x;
-    private int y;
-    private Vector2 movement;
+public class Player extends Entity {
 
     public Player(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setMovement(Vector2 movement) {
-        this.movement = movement;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public Vector2 getMovement() {
-        return movement;
+        super(x, y);
     }
 
     public void update() {
         //Simple collision detection with ground
         if (getY() < Game.WINDOWSIZE.getHeight() - 50) {
-            movement.setY(movement.getY() + Game.GRAVITY);
+            super.getMovement().setY(super.getMovement().getY() + Game.GRAVITY);
         }
-        x += movement.getX();
-        y += movement.getY();
+        super.setX(super.getX() + super.getMovement().getX());
+        super.setY(super.getY() + super.getMovement().getY());
         if (getY() >= Game.WINDOWSIZE.getHeight() - 50) {
             setY((int) (Game.WINDOWSIZE.getHeight() - 50));
-            movement.setY(0);
+            super.getMovement().setY(0);
         }
     }
 
     public void jump() {
-        if (movement.getY() == 0) {
-            movement.setY(-10);
+        if (super.getMovement().getY() == 0) {
+            super.getMovement().setY(-15);
         }
     }
 
+    @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.RED);
         g.fillRect(getX(), getY(), 50, 50);
