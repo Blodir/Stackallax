@@ -3,9 +3,13 @@ package stackallax.stackallax;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import logic.CollisionDetector;
+import logic.ObstacleManager;
+import logic.ScoreManager;
 import stackallax.entities.Player;
 import stackallax.graphics.BackgroundManager;
 import stackallax.maths.Vector2;
@@ -19,12 +23,16 @@ public class Game extends JPanel implements Runnable {
     private static final String title = "Stackallax";
     public static final Dimension WINDOWSIZE = new Dimension(500, 500);
     public static final int GRAVITY = 1;
-    public static final int SPEED = 5;
+    
+    public static int SPEED = 5;
 
     private static JFrame frame;
 
     private Player player;
     private BackgroundManager backgroundManager;
+    private ObstacleManager obstacleManager;
+    private CollisionDetector collisionDetector;
+    private ScoreManager score;
 
     private int FPS;
 
@@ -44,6 +52,9 @@ public class Game extends JPanel implements Runnable {
         player = new Player(50, 450);
         player.setMovement(new Vector2(0, 0));
         backgroundManager = new BackgroundManager();
+        obstacleManager = new ObstacleManager();
+        collisionDetector = new CollisionDetector(player, obstacleManager);
+        score = new ScoreManager();
         getFrame().addKeyListener(new InputListener(player));
         isRunning = true;
         new Thread(this).start();
@@ -73,8 +84,20 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
+        if (new Random().nextInt(10) == 1) {
+            obstacleManager.spawn();
+        }
         backgroundManager.update();
         player.update();
+        obstacleManager.update();
+        if (!collisionDetector.update()) {
+            gameOver();
+        }
+        score.increase();
+    }
+    
+    private void gameOver() {
+        System.out.println("GAME OVER");
     }
 
     @Override
@@ -85,6 +108,12 @@ public class Game extends JPanel implements Runnable {
         }
         if (player != null) {
             player.draw((Graphics2D) g);
+        }
+        if (obstacleManager != null) {
+            obstacleManager.draw((Graphics2D) g);
+        }
+        if (score != null) {
+            score.draw((Graphics2D) g);
         }
     }
 
@@ -110,7 +139,7 @@ public class Game extends JPanel implements Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            
             repaint();
         }
     }

@@ -11,8 +11,11 @@ import stackallax.stackallax.Game;
  */
 public class Player extends Entity {
 
+    public static final int PLAYERWIDTH = 50;
+    public static final int PLAYERHEIGHT = 50;
+    
     public Player(int x, int y) {
-        super(x, y);
+        super(x, y, PLAYERWIDTH, PLAYERHEIGHT);
     }
 
     public void update() {
