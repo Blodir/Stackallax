@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package stackallax.entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
+ * Yksinkertainen Entity-luokan perivä pelimaailman esteitä mallintava luokkka.
  *
  * @author Pyry
  */

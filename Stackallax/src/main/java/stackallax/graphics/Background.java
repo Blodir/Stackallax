@@ -7,7 +7,8 @@ import javax.imageio.ImageIO;
 import stackallax.maths.Vector2;
 
 /**
- *
+ * Luokka varastoi yksittäisen taustan tiedoista sekä piirrosta
+ * 
  * @author Pyry
  */
 public class Background {

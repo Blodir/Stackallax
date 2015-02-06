@@ -15,7 +15,8 @@ import stackallax.graphics.BackgroundManager;
 import stackallax.maths.Vector2;
 
 /**
- *
+ * Pääluokka joka sisältää mainin, käyttöliittymän sekä gameloopin.
+ * 
  * @author Pyry
  */
 public class Game extends JPanel implements Runnable {
@@ -84,7 +85,7 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void update() {
-        if (new Random().nextInt(10) == 1) {
+        if (new Random().nextInt(50) == 1) {
             obstacleManager.spawn();
         }
         backgroundManager.update();
@@ -94,6 +95,9 @@ public class Game extends JPanel implements Runnable {
             gameOver();
         }
         score.increase();
+        if(score.getScore() % 1000 == 0) {
+            SPEED++;
+        }
     }
     
     private void gameOver() {

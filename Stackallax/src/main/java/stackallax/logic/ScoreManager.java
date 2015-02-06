@@ -8,6 +8,7 @@ package stackallax.logic;
 import java.awt.Graphics2D;
 
 /**
+ * Luokka huolehtii pisteiden kirjanpidosta ja piirtämisestä.
  *
  * @author Pyry
  */

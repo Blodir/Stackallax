@@ -11,3 +11,5 @@ huom: opiskelua projektia varten (paljon) ei otettu mukaan tunti määriin
 	* 26.1.15 - 1 tunti backgroundeja!
 	* 29.1.15 - 1 tunti background + inputlistener
 	* 30.1.15 - 1 tunti background + hyppely
+* Deadline 4
+	* 6.2 - 4 tuntia collisiondetector, obstaclemanager, scoremanager, testejä, javadoccia

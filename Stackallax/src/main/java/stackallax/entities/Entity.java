@@ -7,6 +7,7 @@ import stackallax.maths.Vector2;
 import stackallax.stackallax.Game;
 
 /**
+ * Luokka sisältää peliobjektin perustiedot. Toimii yläluokkana eri tyyppisille objekteille
  *
  * @author Pyry
  */

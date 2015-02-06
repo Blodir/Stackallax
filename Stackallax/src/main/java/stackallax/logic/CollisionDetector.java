@@ -11,6 +11,7 @@ import stackallax.maths.Vector2;
 import stackallax.stackallax.Game;
 
 /**
+ * Luokka tarkistaa osuuko pelaaja muihin peliobjekteihin ja valitsee asianmukaisen toimenpiteen.
  *
  * @author Pyry
  */

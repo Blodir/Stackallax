@@ -6,7 +6,8 @@ import stackallax.maths.Vector2;
 import stackallax.stackallax.Game;
 
 /**
- *
+ * Luokka huolehtii pelihahmon tiedoista, liikkumisesta ja piirrosta
+ * 
  * @author Pyry
  */
 public class Player extends Entity {

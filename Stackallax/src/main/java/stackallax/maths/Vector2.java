@@ -1,6 +1,7 @@
 package stackallax.maths;
 
 /**
+ * Luokka mallintaa kaksiulotteista vektoria
  *
  * @author Pyry
  */

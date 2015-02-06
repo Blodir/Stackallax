@@ -11,7 +11,8 @@ import stackallax.maths.Vector2;
 import stackallax.stackallax.Game;
 
 /**
- *
+ * Luokka huolehtii taustojen varastoinnista sekä piirrosta
+ * 
  * @author Pyry
  */
 public class BackgroundManager {
