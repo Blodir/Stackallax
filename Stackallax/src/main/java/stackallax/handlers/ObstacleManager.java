@@ -7,7 +7,7 @@ import stackallax.maths.Vector2;
 import stackallax.stackallax.Game;
 
 /**
- * Luokka pitää lukua esteistä (Obstacle) ja huolen turhien poistosta.
+ * Luokka luo esteitä (Obstacle), varastoi niitä ja pitää huolen turhien poistosta.
  *
  * @author Pyry
  */

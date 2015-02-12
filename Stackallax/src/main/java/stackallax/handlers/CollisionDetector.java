@@ -31,9 +31,9 @@ public class CollisionDetector {
     
     public boolean update() {
         //ground collision
-        if (player.getY() >= Game.WINDOWSIZE.height - 50) {
+        if (player.getY() >= Game.WINDOWSIZE.height - player.getHeight()) {
             player.getMovement().setY(0);
-            player.setY(Game.WINDOWSIZE.height - 50);
+            player.setY(Game.WINDOWSIZE.height - player.getHeight());
         } else {
             player.getMovement().setY(player.getMovement().getY() + Game.GRAVITY);
         }
@@ -41,12 +41,22 @@ public class CollisionDetector {
         for (Obstacle obstacle : obstacleManager.getObstacles()) {
             if (obstacle.getBounds().intersects(player.getBounds())) {
                 //if obstacle intersects player
-                if (player.getY() > obstacle.getY() - obstacle.getHeight() + 10) {
+                /*if (player.getY() > obstacle.getY() - obstacle.getHeight() + 10) {
                     //if player is lower than obstacle
                     return false; //game over
                 } else {
                     //if player is on top of the obstacle
                     player.getMovement().setY(0);
+                }
+                */
+                if (player.getMovement().getY() > 0) { //if coming from top
+                    if ((player.getX() + player.getWidth() - obstacle.getX())/((-1) * obstacle.getMovement().getX()) >
+                    (player.getY() + player.getHeight() - obstacle.getY())/((2 * player.getY()) - player.getMovement().getY())) {
+                        player.setY(obstacle.getY() - obstacle.getHeight());
+                        player.getMovement().setY(0);
+                    }
+                } else {
+                    return false;
                 }
             }
         }

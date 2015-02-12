@@ -12,7 +12,7 @@ import stackallax.handlers.CollisionDetector;
 import stackallax.handlers.ObstacleManager;
 import stackallax.handlers.ScoreManager;
 import stackallax.entities.Player;
-import stackallax.graphics.BackgroundManager;
+import stackallax.handlers.BackgroundManager;
 import stackallax.maths.Vector2;
 
 /**
