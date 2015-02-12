@@ -31,6 +31,10 @@ public class BackgroundManager {
         backOne.setMovement(scrollingSpeed);
         backTwo.setMovement(scrollingSpeed);
     }
+    
+    /**
+     * Kutsuu taustojen update() metodeita ja varmistaa että taustat ovat näkyvillä ruudulla
+     */
 
     public void update() {
         backOne.update();
@@ -44,6 +48,12 @@ public class BackgroundManager {
             backTwo.setX(backTwo.getImageWidth());
         }
     }
+    
+    /**
+     * Piirtää varastoidut taustat
+     * 
+     * @param g grafiikkamuuttuja jolla piirretään
+     */
 
     public void paint(Graphics2D g) {
         backOne.draw(g);

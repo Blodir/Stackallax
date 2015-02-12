@@ -23,6 +23,11 @@ public class CollisionDetector {
         player = p;
         obstacleManager = om;
     }
+    /**
+     * Tarkistaa että pelaaja ei ole osunut esteeseen sivusuunnassa sekä korjaa pelaajan liikkumisvektorin jos osuu maahan tai jonkin esteen päälle.
+     * 
+     * @return Palauttaa false jos pelaaja teki laittoman osuman, muuten true.
+     */
     
     public boolean update() {
         //ground collision

@@ -56,6 +56,10 @@ public class Background {
         return image.getWidth();
     }
 
+    /**
+     * Siirtää taustoja movement vektorin mukaisen määrän
+     */
+    
     public void update() {
         position.add(movement);
     }

@@ -18,11 +18,10 @@ public class Player extends Entity {
     public Player(int x, int y) {
         super(x, y, PLAYERWIDTH, PLAYERHEIGHT);
     }
-
-    public void update() {
-        super.setX(super.getX() + super.getMovement().getX());
-        super.setY(super.getY() + super.getMovement().getY());
-    }
+    
+    /**
+     * Lisää pelaajalle vertikaalista vauhtia
+     */
 
     public void jump() {
         if (super.getMovement().getY() == 0) {

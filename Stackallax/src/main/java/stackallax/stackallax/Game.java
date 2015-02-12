@@ -48,6 +48,10 @@ public class Game extends JPanel implements Runnable {
         FPS = 60;
         targetTime = 1000 / FPS;
     }
+    
+    /**
+     * Alustaa uuden pelin ja aloittaa sen
+     */
 
     public void start() {
         player = new Player(50, 450);
@@ -64,6 +68,11 @@ public class Game extends JPanel implements Runnable {
     public Player getPlayer() {
         return player;
     }
+    
+    /**
+     * Määrittelee framen ja siirtyy pelin alustukseen
+     * @param args 
+     */
 
     public static void main(String args[]) {
         frame = new JFrame(title);
@@ -84,6 +93,12 @@ public class Game extends JPanel implements Runnable {
         return frame;
     }
 
+    /**
+     * Päivittää pelin logiikan
+     * 
+     * Kutsuu update() metodeja ja kasvattaa pelin nopeutta
+     */
+    
     public void update() {
         if (new Random().nextInt(50) == 1) {
             obstacleManager.spawn();
@@ -99,6 +114,10 @@ public class Game extends JPanel implements Runnable {
             SPEED++;
         }
     }
+    
+    /**
+     * Lopettaa pelin
+     */
     
     private void gameOver() {
         System.out.println("GAME OVER");
@@ -120,6 +139,10 @@ public class Game extends JPanel implements Runnable {
             score.draw((Graphics2D) g);
         }
     }
+    
+    /**
+     * Game-loop
+     */
 
     @Override
     public void run() {

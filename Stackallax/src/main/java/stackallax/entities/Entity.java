@@ -52,6 +52,21 @@ public abstract class Entity {
         return position.getY();
     }
     
+    /**
+     * Laskee entityn uuden position vanhan position ja liikkumisvektorin perusteella
+     */
+    
+    public void update() {
+        setX(getX() + getMovement().getX());
+        setY(getY() + getMovement().getY());
+    }
+    
+    /**
+     * Palauttaa Entityn rajat suorakulmiona (jotta rajoja voitaisiin vertailla Rectangle luokan avulla)
+     * 
+     * @return Entityn rajat suorakulmiona
+     */
+    
     public Rectangle getBounds() {
         return new Rectangle(getX(), getY(), width, height);
     }
@@ -60,5 +75,10 @@ public abstract class Entity {
         return movement;
     }
 
+    /**
+     * Piirtää entityn grafiikalla g
+     * @param g grafiikkamuuttuja jolla piirretään
+     */
+    
     public abstract void draw(Graphics2D g);
 }

@@ -13,12 +13,7 @@ public class Obstacle extends Entity {
     public Obstacle(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
-
-    public void update() {
-        super.setX(super.getX() + super.getMovement().getX());
-        super.setY(super.getY() + super.getMovement().getY());
-    }
-
+    
     @Override
     public void draw(Graphics2D g) {
         g.setColor(Color.BLUE);

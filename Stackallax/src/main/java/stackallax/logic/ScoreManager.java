@@ -16,6 +16,10 @@ public class ScoreManager {
 
     private int score;
     
+    /**
+     * Kasvattaa pisteitä yhdellä
+     */
+    
     public void increase() {
         score++;
     }

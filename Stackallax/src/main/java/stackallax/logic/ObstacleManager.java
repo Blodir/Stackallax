@@ -17,6 +17,10 @@ public class ObstacleManager {
     
     private final ArrayList<Obstacle> obstacles = new ArrayList<>();
     
+    /**
+     * Luo uuden esteen
+     */
+    
     public void spawn() {
         Obstacle o = new Obstacle(Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT, OBSTACLEWIDTH, OBSTACLEHEIGHT);
         o.setMovement(new Vector2(-1 * Game.SPEED, 0));
@@ -27,11 +31,15 @@ public class ObstacleManager {
         return obstacles;
     }
     
+    /**
+     * Päivittää jokaisen obstaclen sijainnin sekä huolehtii että ruudulta pois olevat poistetaan
+     */
+    
     public void update() {
         ArrayList<Obstacle> removables = new ArrayList<>();
         for (Obstacle o : obstacles) {
             o.update();
-            if (o.getX() < 0) {
+            if (o.getX() < -50) {
                 removables.add(o);
             }
         }

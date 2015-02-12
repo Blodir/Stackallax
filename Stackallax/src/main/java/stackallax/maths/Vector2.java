@@ -31,11 +31,23 @@ public class Vector2 {
         this.y = y;
     }
 
+    /**
+     * Lisää vektoriin toisen vektorin
+     * 
+     * @param vector vektori joka halutaan lisätä
+     */
+    
     public void add(Vector2 vector) {
         x += vector.getX();
         y += vector.getY();
 
     }
+    
+    /**
+     * Kertoo vektorin kokonaisluvulla
+     * 
+     * @param i kokonaisluku jolla vektori halutaan kertoa
+     */
 
     public void multiply(int i) {
         x *= i;
