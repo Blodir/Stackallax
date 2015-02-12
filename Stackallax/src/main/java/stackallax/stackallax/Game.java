@@ -22,7 +22,7 @@ import stackallax.maths.Vector2;
 public class Game extends JPanel implements Runnable {
 
     private static final String title = "Stackallax";
-    public static final Dimension WINDOWSIZE = new Dimension(500, 500);
+    public static final Dimension WINDOWSIZE = new Dimension(800, 500);
     public static final int GRAVITY = 1;
     
     public static int SPEED = 5;
