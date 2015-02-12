@@ -1,5 +1,6 @@
 package stackallax.stackallax;
 
+import stackallax.handlers.KeyboardHandler;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -7,9 +8,9 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import stackallax.logic.CollisionDetector;
-import stackallax.logic.ObstacleManager;
-import stackallax.logic.ScoreManager;
+import stackallax.handlers.CollisionDetector;
+import stackallax.handlers.ObstacleManager;
+import stackallax.handlers.ScoreManager;
 import stackallax.entities.Player;
 import stackallax.graphics.BackgroundManager;
 import stackallax.maths.Vector2;
@@ -60,7 +61,7 @@ public class Game extends JPanel implements Runnable {
         obstacleManager = new ObstacleManager();
         collisionDetector = new CollisionDetector(player, obstacleManager);
         score = new ScoreManager();
-        getFrame().addKeyListener(new InputListener(player));
+        getFrame().addKeyListener(new KeyboardHandler(player));
         isRunning = true;
         new Thread(this).start();
     }
