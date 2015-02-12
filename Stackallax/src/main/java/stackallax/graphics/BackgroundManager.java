@@ -16,6 +16,8 @@ import stackallax.stackallax.Game;
  * @author Pyry
  */
 public class BackgroundManager {
+    
+    private String back1 = "background.png";
 
     private Background backOne;
     private Background backTwo;
@@ -23,8 +25,8 @@ public class BackgroundManager {
     private Vector2 scrollingSpeed;
 
     public BackgroundManager() {
-        backOne = new Background(0, 0);
-        backTwo = new Background(backOne.getImageWidth(), 0);
+        backOne = new Background(0, 0, back1);
+        backTwo = new Background(backOne.getImageWidth(), 0, back1);
         scrollingSpeed = new Vector2(-1 * (Game.SPEED / 2), 0);
         backOne.setMovement(scrollingSpeed);
         backTwo.setMovement(scrollingSpeed);

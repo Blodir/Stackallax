@@ -13,15 +13,13 @@ import stackallax.stackallax.Game;
  */
 public abstract class Entity {
 
-    private int x;
-    private int y;
+    private Vector2 position;
     private int width;
     private int height;
     private Vector2 movement;
 
     public Entity(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
+        position = new Vector2(x, y);
         this.width = width;
         this.height = height;
     }
@@ -35,11 +33,11 @@ public abstract class Entity {
     }
     
     public void setX(int x) {
-        this.x = x;
+        position.setX(x);
     }
 
     public void setY(int y) {
-        this.y = y;
+        position.setY(y);
     }
 
     public void setMovement(Vector2 movement) {
@@ -47,15 +45,15 @@ public abstract class Entity {
     }
 
     public int getX() {
-        return x;
+        return position.getX();
     }
 
     public int getY() {
-        return y;
+        return position.getY();
     }
     
     public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(getX(), getY(), width, height);
     }
 
     public Vector2 getMovement() {

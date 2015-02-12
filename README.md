@@ -1,7 +1,8 @@
 # Stackallax
 
 Deadline 5 (13.2)
-position vector2 for entity
+;;position vector2 for entity
+;;position vecotr2 for Background
 improved CollisionDetection using vectors to decide angle
 multiple backgrounds support
 Game over & new game
