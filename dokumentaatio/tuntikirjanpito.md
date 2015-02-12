@@ -13,3 +13,6 @@ huom: opiskelua projektia varten (paljon) ei otettu mukaan tunti määriin
 	* 30.1.15 - 1 tunti background + hyppely
 * Deadline 4
 	* 6.2 - 4 tuntia collisiondetector, obstaclemanager, scoremanager, testejä, javadoccia
+* Deadline 5
+	* 9.2 mursin lapaluun - on vaikeuttanut projektin tekoa jonkin verran (useampia sairaalakäyntejä jne)
+	* 12.2 - 5 tuntia

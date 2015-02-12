@@ -1,0 +1,15 @@
+title Stackallax game loop
+
+Game->Game: run()
+loop isRunning
+    Game->+Game: update()
+    Game->BackgroundManager: update()
+    Game->player: update()
+    Game->ObstacleManager: update()
+    Game->CollisionDetector: update()
+    note left of Game: gameOver() if collision
+    Game->-ScoreManager: increase()
+    note left of Game: increase speed if score % 1000 = 0
+    note left of Game: delay
+    Game->Game: repaint()
+end
