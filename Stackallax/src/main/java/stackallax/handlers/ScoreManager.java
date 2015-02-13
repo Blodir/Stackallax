@@ -34,7 +34,7 @@ public class ScoreManager {
     }
 
     public void draw(Graphics2D g) {
-        if (score > 5000) {
+        /*if (score > 5000) {
             g.setColor(Color.BLUE);
         } else if (score > 4000) {
             g.setColor(Color.CYAN);
@@ -47,7 +47,8 @@ public class ScoreManager {
         } else {
             g.setColor(Color.RED);
         }
-
+        */
+        g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", 0, 32));
         g.drawString("Score: " + score, 0, 25);
     }

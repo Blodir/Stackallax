@@ -50,6 +50,14 @@ public class BackgroundManager {
         }
     }
     
+    public Background getBackOne() {
+        return backOne;
+    }
+    
+    public Background getBackTwo() {
+        return backTwo;
+    }
+    
     /**
      * Piirtää varastoidut taustat
      * 
