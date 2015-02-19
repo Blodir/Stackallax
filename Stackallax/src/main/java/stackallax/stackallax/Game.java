@@ -1,7 +1,9 @@
 package stackallax.stackallax;
 
+import java.awt.Color;
 import stackallax.handlers.KeyboardHandler;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
@@ -17,7 +19,7 @@ import stackallax.maths.Vector2;
 
 /**
  * Pääluokka joka sisältää mainin, käyttöliittymän sekä gameloopin.
- * 
+ *
  * @author Pyry
  */
 public class Game extends JPanel implements Runnable {
@@ -25,10 +27,12 @@ public class Game extends JPanel implements Runnable {
     private static final String title = "Stackallax";
     public static final Dimension WINDOWSIZE = new Dimension(800, 500);
     public static final int GRAVITY = 1;
-    
+
     public static int SPEED = 5;
 
     private static JFrame frame;
+
+    private int finalScore = 0;
 
     private Player player;
     private BackgroundManager backgroundManager;
@@ -49,11 +53,14 @@ public class Game extends JPanel implements Runnable {
         FPS = 60;
         targetTime = 1000 / FPS;
     }
-    
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
     /**
      * Alustaa uuden pelin ja aloittaa sen
      */
-
     public void start() {
         player = new Player(50, 450);
         player.setMovement(new Vector2(0, 0));
@@ -61,7 +68,7 @@ public class Game extends JPanel implements Runnable {
         obstacleManager = new ObstacleManager();
         collisionDetector = new CollisionDetector(player, obstacleManager);
         score = new ScoreManager();
-        getFrame().addKeyListener(new KeyboardHandler(player));
+        getFrame().addKeyListener(new KeyboardHandler(player, this));
         isRunning = true;
         new Thread(this).start();
     }
@@ -69,12 +76,16 @@ public class Game extends JPanel implements Runnable {
     public Player getPlayer() {
         return player;
     }
-    
+
+    public void setRunning(boolean running) {
+        isRunning = running;
+    }
+
     /**
      * Määrittelee framen ja siirtyy pelin alustukseen
-     * @param args 
+     *
+     * @param args
      */
-
     public static void main(String args[]) {
         frame = new JFrame(title);
         Game game = new Game();
@@ -96,37 +107,45 @@ public class Game extends JPanel implements Runnable {
 
     /**
      * Päivittää pelin logiikan
-     * 
+     *
      * Kutsuu update() metodeja ja kasvattaa pelin nopeutta
      */
-    
     public void update() {
         if (new Random().nextInt(50) == 1) {
             obstacleManager.spawn();
         }
         backgroundManager.update();
         player.update();
-        obstacleManager.update();
+        obstacleManager.update(score.getScore());
         if (!collisionDetector.update()) {
             gameOver();
         }
         score.increase();
-        if(score.getScore() % 1000 == 0) {
+        if (score.getScore() % 1000 == 0) {
             SPEED++;
         }
     }
-    
+
     /**
      * Lopettaa pelin
      */
-    
     private void gameOver() {
         System.out.println("GAME OVER");
+        finalScore = score.getScore();
+        isRunning = false;
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        if (isRunning == false) {
+            g.setColor(Color.RED);
+            g.setFont(new Font("Arial", 0, 32));
+            g.drawString("GAME OVER", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 - 100);
+            g.drawString("Press any key to continue", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 - 50);
+            g.drawString("Score: " + finalScore, (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2);
+            return;
+        }
         if (backgroundManager != null) {
             backgroundManager.paint((Graphics2D) g);
         }
@@ -140,24 +159,21 @@ public class Game extends JPanel implements Runnable {
             score.draw((Graphics2D) g);
         }
     }
-    
+
     /**
      * Game-loop
      */
-
     @Override
     public void run() {
         //MAIN GAME LOOP
         long start;
         long elapsed;
         long wait;
-
         while (isRunning) {
             start = System.nanoTime();
             update();
             elapsed = System.nanoTime() - start;
             wait = targetTime - elapsed / 1000000;
-
             if (wait < 0) {
                 wait = 5;
             }
@@ -167,9 +183,9 @@ public class Game extends JPanel implements Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
             repaint();
         }
-    }
 
+        repaint();
+    }
 }

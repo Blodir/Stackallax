@@ -17,6 +17,7 @@ public class ObstacleManager {
     
     private final ArrayList<Obstacle> obstacles = new ArrayList<>();
     
+    
     /**
      * Luo uuden esteen
      */
@@ -27,16 +28,41 @@ public class ObstacleManager {
         obstacles.add(o);
     }
     
+    /**
+     * Generoi esteet niin monen framen ajaksi kunnes nopeus muuttuu
+     */
+    
+    public void generateLevel() {
+        while(!spawnWillBeInScreen()) {
+            
+        }
+    }
+    
+    /**
+     * Jokaisen kentän tulee olla kokonaan poistunut ruudulta ennen kuin seuraava generoidaan
+     * @return whether or not will the next spawn be in screen when increase of speed occurs.
+     */
+    
+    public boolean spawnWillBeInScreen() {
+        return false;
+    }
+    
     public ArrayList<Obstacle> getObstacles() {
         return obstacles;
     }
     
     /**
-     * Päivittää jokaisen obstaclen sijainnin sekä huolehtii että ruudulta pois olevat poistetaan
+     * Päivittää jokaisen obstaclen sijainnin, huolehtii että ruudulta pois olevat poistetaan sekä kutsuu generateLevel()
+     * @param score
      */
     
-    public void update() {
+    public void update(int score) {
         ArrayList<Obstacle> removables = new ArrayList<>();
+        
+        if (score > 0 && score % 1000 == 0) {
+            generateLevel();
+        }
+        
         for (Obstacle o : obstacles) {
             o.update();
             if (o.getX() < -50) {

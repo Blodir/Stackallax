@@ -54,7 +54,7 @@ public class TestObstacleManager {
     public void testRemove() {
         obs.spawn();
         for (int i = 0; i < 200; i++) {
-            obs.update();
+            obs.update(100);
         }
         assertTrue(obs.getObstacles().isEmpty());
     }
@@ -62,7 +62,7 @@ public class TestObstacleManager {
     @Test
     public void testRemove2() {
         obs.spawn();
-        obs.update();
+        obs.update(100);
         obs.getObstacles().get(0).setX(-50);
         assertTrue(obs.getObstacles().size() == 1);
     }
