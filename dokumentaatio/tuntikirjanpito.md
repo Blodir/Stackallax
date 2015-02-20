@@ -16,3 +16,6 @@ huom: opiskelua projektia varten (paljon) ei otettu mukaan tunti määriin
 * Deadline 5
 	* 9.2 mursin lapaluun - on vaikeuttanut projektin tekoa jonkin verran (useampia sairaalakäyntejä jne)
 	* 12.2 - 5 tuntia
+* Deadline 6
+	* 18.2 1 tunti - game over screeni
+	* 19.2.2 5 tuntia - spawner + debug + highscore

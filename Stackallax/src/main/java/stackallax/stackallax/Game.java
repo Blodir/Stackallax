@@ -62,6 +62,7 @@ public class Game extends JPanel implements Runnable {
      * Alustaa uuden pelin ja aloittaa sen
      */
     public void start() {
+        finalScore = 0;
         player = new Player(50, 450);
         player.setMovement(new Vector2(0, 0));
         backgroundManager = new BackgroundManager();
@@ -111,9 +112,9 @@ public class Game extends JPanel implements Runnable {
      * Kutsuu update() metodeja ja kasvattaa pelin nopeutta
      */
     public void update() {
-        if (new Random().nextInt(50) == 1) {
-            obstacleManager.spawn();
-        }
+        /*if (new Random().nextInt(50) == 1) {
+         obstacleManager.spawn();
+         }*/
         backgroundManager.update();
         player.update();
         obstacleManager.update(score.getScore());
@@ -135,6 +136,15 @@ public class Game extends JPanel implements Runnable {
         isRunning = false;
     }
 
+    public void paintScore(Graphics g) {
+        g.drawString("Highscores: ", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 + 50);
+        g.setFont(new Font("Arial", 0, 16));
+        int[] highscores = score.getHighscoreList();
+        for (int i = 0; i < highscores.length; i++) {
+            g.drawString((i + 1) + ". " + highscores[i], (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 + 50 + (20 * (i + 1)));
+        }
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -144,6 +154,10 @@ public class Game extends JPanel implements Runnable {
             g.drawString("GAME OVER", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 - 100);
             g.drawString("Press any key to continue", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 - 50);
             g.drawString("Score: " + finalScore, (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2);
+            
+            if(finalScore > 0) {
+            //    paintScore(g);
+            }            
             return;
         }
         if (backgroundManager != null) {
@@ -187,5 +201,6 @@ public class Game extends JPanel implements Runnable {
         }
 
         repaint();
+        score.writeHighscores();
     }
 }

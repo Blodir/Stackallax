@@ -34,12 +34,15 @@ public class CollisionDetector {
         if (player.getY() >= Game.WINDOWSIZE.height - player.getHeight()) {
             player.getMovement().setY(0);
             player.setY(Game.WINDOWSIZE.height - player.getHeight());
+            player.setCanJump(true);
         } else {
             player.getMovement().setY(player.getMovement().getY() + Game.GRAVITY);
+            player.setCanJump(false);
         }
         
         for (Obstacle obstacle : obstacleManager.getObstacles()) {
             if (obstacle.getBounds().intersects(player.getBounds())) {
+                player.setCanJump(true);
                 //if obstacle intersects player
                 /*if (player.getY() > obstacle.getY() - obstacle.getHeight() + 10) {
                     //if player is lower than obstacle

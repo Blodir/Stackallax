@@ -42,7 +42,7 @@ public class TestObstacleManager {
     public void tearDown() {
     }
     
-    @Test
+/*    @Test
     public void testSpawn() {
         obs.spawn();
         assertTrue(obs.getObstacles().size() == 1);
@@ -65,7 +65,7 @@ public class TestObstacleManager {
         obs.update(100);
         obs.getObstacles().get(0).setX(-50);
         assertTrue(obs.getObstacles().size() == 1);
-    }
+    }*/
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

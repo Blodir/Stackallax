@@ -2,6 +2,7 @@ package stackallax.handlers;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Random;
 import stackallax.entities.Obstacle;
 import stackallax.maths.Vector2;
 import stackallax.stackallax.Game;
@@ -17,6 +18,12 @@ public class ObstacleManager {
     
     private final ArrayList<Obstacle> obstacles = new ArrayList<>();
     
+    private Random rand;
+    
+    public ObstacleManager() {
+        rand = new Random();
+        spawnWithProbability(100, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
+    }
     
     /**
      * Luo uuden esteen
@@ -28,23 +35,33 @@ public class ObstacleManager {
         obstacles.add(o);
     }
     
+    public void spawnWithProbability(int probability, int x, int y) {
+        if (rand.nextInt(100) <= probability) {
+            Obstacle o = new Obstacle(x, y, OBSTACLEWIDTH, OBSTACLEHEIGHT);
+            o.setMovement(new Vector2(-1 * Game.SPEED, 0));
+            obstacles.add(o);
+        }
+    }
+    
     /**
      * Generoi esteet niin monen framen ajaksi kunnes nopeus muuttuu
      */
     
     public void generateLevel() {
-        while(!spawnWillBeInScreen()) {
-            
+        int firstSpawnDistance = Game.WINDOWSIZE.width;
+        int lastSpawnDistance = 5000;
+        int playerJumpDistance = Game.SPEED * 21; //jump lasts for 21 frames
+        for (int focusX = firstSpawnDistance; focusX <= lastSpawnDistance; focusX++) {
+            System.out.println("spawning");
+            //spawnataan eka
+            if (focusX == firstSpawnDistance) {
+                spawnWithProbability(100, focusX, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
+            }
+            //pelaaja pystyy hypätä laatikolta toiselle
+            if (focusX - playerJumpDistance == obstacles.get(obstacles.size() - 1).getX()) {
+                spawnWithProbability(10, focusX, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
+            }
         }
-    }
-    
-    /**
-     * Jokaisen kentän tulee olla kokonaan poistunut ruudulta ennen kuin seuraava generoidaan
-     * @return whether or not will the next spawn be in screen when increase of speed occurs.
-     */
-    
-    public boolean spawnWillBeInScreen() {
-        return false;
     }
     
     public ArrayList<Obstacle> getObstacles() {
@@ -56,12 +73,32 @@ public class ObstacleManager {
      * @param score
      */
     
-    public void update(int score) {
-        ArrayList<Obstacle> removables = new ArrayList<>();
+    public void runSpawner() {
+        int playerJumpDistance = Game.SPEED * 21; //jump lasts for 21 frames
         
-        if (score > 0 && score % 1000 == 0) {
-            generateLevel();
+        if (!obstacles.isEmpty()) {
+            if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > playerJumpDistance) {
+                spawnWithProbability(1, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
+            }
+        } else {
+            //ground level spawn
+            spawnWithProbability(100, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
         }
+        
+        //first layer spawn
+        if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > 50 && Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() < 80) {
+            if (obstacles.get(obstacles.size() - 1).getY() == Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT)) {
+                if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > 50) {
+                    spawnWithProbability(10, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT));
+                }
+            }
+        }
+    }
+    
+    public void update(int score) {
+        runSpawner();
+        
+        ArrayList<Obstacle> removables = new ArrayList<>();
         
         for (Obstacle o : obstacles) {
             o.update();

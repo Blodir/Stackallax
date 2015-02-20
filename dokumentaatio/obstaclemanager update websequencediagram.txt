@@ -1,0 +1,19 @@
+title Stackallax ObstacleManager update
+
+Game->+ObstacleManager: update()
+    ObstacleManager->ObstacleManager: runSpawner()
+    ObstacleManager->removables: new ArrayList()<Obstacle>
+    loop fore obstacles
+       ObstacleManager->Obstacle: update()
+
+       ObstacleManager->+Obstacle: getX()
+       Obstacle-->-ObstacleManager: -51
+
+       opt if o.getX() < -50
+          ObstacleManager->removables: add(obstacle)
+       end
+     end
+loop fore obstacles in removables
+note left of removables: remove all removables from the list that stores all obstacles
+ObstacleManager->-obstacles:remove(obstacle)
+end

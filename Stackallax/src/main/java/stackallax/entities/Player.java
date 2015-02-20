@@ -15,6 +15,16 @@ public class Player extends Entity {
     public static final int PLAYERWIDTH = 50;
     public static final int PLAYERHEIGHT = 50;
     
+    private boolean canJump = true;
+
+    public boolean isCanJump() {
+        return canJump;
+    }
+
+    public void setCanJump(boolean canJump) {
+        this.canJump = canJump;
+    }
+    
     public Player(int x, int y) {
         super(x, y, PLAYERWIDTH, PLAYERHEIGHT);
     }
@@ -24,7 +34,7 @@ public class Player extends Entity {
      */
 
     public void jump() {
-        if (super.getMovement().getY() == 0) {
+        if (canJump) {
             super.getMovement().setY(-15);
         }
     }
