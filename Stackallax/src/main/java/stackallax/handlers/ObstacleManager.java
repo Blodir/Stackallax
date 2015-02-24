@@ -36,7 +36,7 @@ public class ObstacleManager {
     }
     
     public void spawnWithProbability(int probability, int x, int y) {
-        if (rand.nextInt(100) <= probability) {
+        if (rand.nextInt(1000) <= probability) {
             Obstacle o = new Obstacle(x, y, OBSTACLEWIDTH, OBSTACLEHEIGHT);
             o.setMovement(new Vector2(-1 * Game.SPEED, 0));
             obstacles.add(o);
@@ -74,24 +74,30 @@ public class ObstacleManager {
      */
     
     public void runSpawner() {
-        int playerJumpDistance = Game.SPEED * 21; //jump lasts for 21 frames
+        int minimumSpawnDistance = Game.SPEED * 21; //jump lasts for 21 frames
         
         if (!obstacles.isEmpty()) {
-            if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > playerJumpDistance) {
-                spawnWithProbability(1, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
+            if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > minimumSpawnDistance) {
+                spawnWithProbability(5 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
+                spawnWithProbability(1 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT));
+                
             }
         } else {
             //ground level spawn
-            spawnWithProbability(100, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
+            spawnWithProbability(1000, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
         }
         
-        //first layer spawn
-        if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > 50 && Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() < 80) {
+        //first layer spawn (ei toimi)
+        /*if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > 50 && Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() < 80) {
             if (obstacles.get(obstacles.size() - 1).getY() == Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT)) {
                 if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > 50) {
-                    spawnWithProbability(10, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT));
+                    spawnWithProbability(1000, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT));
                 }
             }
+        }*/
+        if (obstacles.get(obstacles.size() - 1).getY() == Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT) && Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > minimumSpawnDistance) {
+            spawnWithProbability(1 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (3 * OBSTACLEHEIGHT));
+                
         }
     }
     

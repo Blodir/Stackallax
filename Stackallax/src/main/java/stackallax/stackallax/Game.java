@@ -71,6 +71,7 @@ public class Game extends JPanel implements Runnable {
         score = new ScoreManager();
         getFrame().addKeyListener(new KeyboardHandler(player, this));
         isRunning = true;
+        SPEED = 5;
         new Thread(this).start();
     }
 

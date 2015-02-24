@@ -62,6 +62,10 @@ public class CollisionDetector {
                     return false;
                 }
             }
+            
+            if (player.getY() == obstacle.getY() - obstacle.getHeight()) {
+                player.setCanJump(true);
+            }
         }
         return true; //game continues
     }
