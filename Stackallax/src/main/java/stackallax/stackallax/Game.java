@@ -156,7 +156,7 @@ public class Game extends JPanel implements Runnable {
             g.drawString("Score: " + finalScore, (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2);
             
             if(finalScore > 0) {
-            //    paintScore(g);
+                paintScore(g);
             }            
             return;
         }
