@@ -70,6 +70,13 @@ public class TestBackgroundManager {
         assertTrue(bm.getBackOne().getMovement().getX() == (-1) * Game.SPEED / 2);
         assertTrue(bm.getBackTwo().getMovement().getX() == (-1) * Game.SPEED / 2);
     }
+    
+    @Test
+    public void testGetBackgrounds() {
+        bm = new BackgroundManager();
+        assertTrue(bm.getBackgrounds().get(0).getX() == 0);
+        assertTrue(bm.getBackgrounds().get(1).getX() == bm.getBackgrounds().get(0).getImageWidth());
+    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

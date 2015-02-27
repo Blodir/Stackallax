@@ -45,11 +45,6 @@ public class TestEntity {
     @Test
     public void testGetMovement() {
         entity = new Entity(10, 10, 50, 50) {
-
-            @Override
-            public void draw(Graphics2D g) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
         };
         Vector2 vector = new Vector2(10, 10);
         entity.setMovement(vector);
@@ -59,11 +54,6 @@ public class TestEntity {
     @Test
     public void testSetXAndSetY() {
         entity = new Entity(10, 10, 50, 50) {
-
-            @Override
-            public void draw(Graphics2D g) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
         };
         entity.setX(5);
         assertTrue(entity.getX() == 5);

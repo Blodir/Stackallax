@@ -18,50 +18,25 @@ public class ObstacleManager {
     
     private final ArrayList<Obstacle> obstacles = new ArrayList<>();
     
-    private Random rand;
+    private final Random rand;
     
     public ObstacleManager() {
         rand = new Random();
-        spawnWithProbability(100, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
     }
     
     /**
-     * Luo uuden esteen
+     * Luo uuden esteen parametreissä määritellyllä todennäköisyydellä
+     * 
+     * @param probability todennäköisyys jolla este luodaan (0-1000)
+     * @param x luotavan esteen x koordinaatti
+     * @param y luotavan esteen y koordidnaatti
      */
-    
-    public void spawn() {
-        Obstacle o = new Obstacle(Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT, OBSTACLEWIDTH, OBSTACLEHEIGHT);
-        o.setMovement(new Vector2(-1 * Game.SPEED, 0));
-        obstacles.add(o);
-    }
     
     public void spawnWithProbability(int probability, int x, int y) {
         if (rand.nextInt(1000) <= probability) {
             Obstacle o = new Obstacle(x, y, OBSTACLEWIDTH, OBSTACLEHEIGHT);
             o.setMovement(new Vector2(-1 * Game.SPEED, 0));
             obstacles.add(o);
-        }
-    }
-    
-    /**
-     * Generoi esteet niin monen framen ajaksi kunnes nopeus muuttuu
-     * (ei käytetty)
-     */
-    
-    public void generateLevel() {
-        int firstSpawnDistance = Game.WINDOWSIZE.width;
-        int lastSpawnDistance = 5000;
-        int playerJumpDistance = Game.SPEED * 21; //jump lasts for 21 frames
-        for (int focusX = firstSpawnDistance; focusX <= lastSpawnDistance; focusX++) {
-            System.out.println("spawning");
-            //spawnataan eka
-            if (focusX == firstSpawnDistance) {
-                spawnWithProbability(100, focusX, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
-            }
-            //pelaaja pystyy hypätä laatikolta toiselle
-            if (focusX - playerJumpDistance == obstacles.get(obstacles.size() - 1).getX()) {
-                spawnWithProbability(10, focusX, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
-            }
         }
     }
     
@@ -98,11 +73,10 @@ public class ObstacleManager {
     
     
     /**
-     * Päivittää jokaisen obstaclen sijainnin, huolehtii että ruudulta pois olevat poistetaan sekä kutsuu generateLevel()
-     * @param score
+     * Päivittää jokaisen obstaclen sijainnin, huolehtii että ruudulta pois olevat poistetaan sekä ajaa spawnerin
      */
     
-    public void update(int score) {
+    public void update() {
         runSpawner();
         
         ArrayList<Obstacle> removables = new ArrayList<>();

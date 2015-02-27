@@ -1,12 +1,9 @@
 package stackallax.stackallax;
 
-import java.awt.Color;
 import stackallax.handlers.KeyboardHandler;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -121,7 +118,7 @@ public class Game extends JPanel implements Runnable {
          }*/
         backgroundManager.update();
         player.update();
-        obstacleManager.update(score.getScore());
+        obstacleManager.update();
         if (!collisionDetector.update()) {
             gameOver();
         }

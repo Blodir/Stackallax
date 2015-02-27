@@ -43,27 +43,25 @@ public class CollisionDetector {
         for (Obstacle obstacle : obstacleManager.getObstacles()) {
             if (obstacle.getBounds().intersects(player.getBounds())) {
                 player.setCanJump(true);
-                //if obstacle intersects player
-                /*if (player.getY() > obstacle.getY() - obstacle.getHeight() + 10) {
-                    //if player is lower than obstacle
-                    return false; //game over
-                } else {
-                    //if player is on top of the obstacle
-                    player.getMovement().setY(0);
-                }
-                */
                 if (player.getMovement().getY() > 0) { //if player has positive vertical velocity (is going towards the ground)
                     
+                    //epic calculation:
+                    //if player comes from top
                     if ((player.getX() + player.getWidth() - obstacle.getX())/((-1) * obstacle.getMovement().getX()) >
                     (player.getY() + player.getHeight() - obstacle.getY())/((2 * player.getY()) - player.getMovement().getY())) {
+                        //player hit an obstacle from the top
+                        //players position is corrected: now on top of obstacle
                         player.setY(obstacle.getY() - obstacle.getHeight());
+                        //player stops falling
                         player.getMovement().setY(0);
                     }
                 } else {
+                    //player hit an obstacle (not from the top), game over.
                     return false;
                 }
             }
             
+            //if player is on top of an obstacle, he can jump
             if (player.getY() == obstacle.getY() - obstacle.getHeight()) {
                 player.setCanJump(true);
             }
