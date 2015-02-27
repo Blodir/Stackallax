@@ -1,22 +1,5 @@
 # Stackallax
 
-Deadline 5 (13.2)
-;;position vector2 for entity
-;;position vecotr2 for Background
-improved CollisionDetection using vectors to decide angle
-multiple backgrounds support
-Game over & new game
+Instructions:
 
-testejä, sekvenssikaavioita, javadoccia, luokkakaaviota
-
-Deadline 6 (20.2)
-elaborate obstacle spawning (different heights and stuff)
-needs to be possible (ja inhimillistä) to survive!
-
-Visible highscores
-highscore writing/reading
-
-Deadline 7 (27.2)
-(foreground?)
-
-(maybe music or sounds?)
+Your mission is to avoid the approaching boxes by jumping (Arrow up key) over them or on top of them. Speed increases every thousand score you gain.
