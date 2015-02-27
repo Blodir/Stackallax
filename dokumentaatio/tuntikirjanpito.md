@@ -19,3 +19,5 @@ huom: opiskelua projektia varten (paljon) ei otettu mukaan tunti määriin
 * Deadline 6
 	* 18.2 1 tunti - game over screeni
 	* 19.2.2 5 tuntia - spawner + debug + highscore
+* Palautus
+	* 26.2 1 tunti viimeistelyä

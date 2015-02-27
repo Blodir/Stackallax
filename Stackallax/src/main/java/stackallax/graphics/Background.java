@@ -27,6 +27,10 @@ public class Background {
             System.out.println(e);
         }
     }
+    
+    public BufferedImage getImage() {
+        return image;
+    }
 
     public void setX(int x) {
         position.setX(x);
@@ -62,10 +66,5 @@ public class Background {
     
     public void update() {
         position.add(movement);
-    }
-
-    public void draw(Graphics2D g) {
-        //draw background here
-        g.drawImage(image, getX(), getY(), null);
     }
 }

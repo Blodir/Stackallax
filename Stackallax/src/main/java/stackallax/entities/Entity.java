@@ -74,11 +74,4 @@ public abstract class Entity {
     public Vector2 getMovement() {
         return movement;
     }
-
-    /**
-     * Piirtää entityn grafiikalla g
-     * @param g grafiikkamuuttuja jolla piirretään
-     */
-    
-    public abstract void draw(Graphics2D g);
 }

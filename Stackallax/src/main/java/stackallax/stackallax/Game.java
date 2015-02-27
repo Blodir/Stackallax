@@ -14,6 +14,7 @@ import stackallax.handlers.CollisionDetector;
 import stackallax.handlers.ObstacleManager;
 import stackallax.handlers.ScoreManager;
 import stackallax.entities.Player;
+import stackallax.graphics.Draw;
 import stackallax.handlers.BackgroundManager;
 import stackallax.maths.Vector2;
 
@@ -39,6 +40,7 @@ public class Game extends JPanel implements Runnable {
     private ObstacleManager obstacleManager;
     private CollisionDetector collisionDetector;
     private ScoreManager score;
+    private Draw draw;
 
     private int FPS;
 
@@ -69,6 +71,7 @@ public class Game extends JPanel implements Runnable {
         obstacleManager = new ObstacleManager();
         collisionDetector = new CollisionDetector(player, obstacleManager);
         score = new ScoreManager();
+        draw = new Draw();
         getFrame().addKeyListener(new KeyboardHandler(player, this));
         isRunning = true;
         SPEED = 5;
@@ -132,51 +135,34 @@ public class Game extends JPanel implements Runnable {
      * Lopettaa pelin
      */
     private void gameOver() {
-        System.out.println("GAME OVER");
         finalScore = score.getScore();
         isRunning = false;
     }
     
-    /**
-     * Tulostaa highscore listan näytölle
-     * @param g 
-     */
-
-    public void paintScore(Graphics g) {
-        g.drawString("Highscores: ", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 + 50);
-        g.setFont(new Font("Arial", 0, 16));
-        int[] highscores = score.getHighscoreList();
-        for (int i = 0; i < highscores.length; i++) {
-            g.drawString((i + 1) + ". " + highscores[i], (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 + 50 + (20 * (i + 1)));
-        }
-    }
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (isRunning == false) {
-            g.setColor(Color.RED);
-            g.setFont(new Font("Arial", 0, 32));
-            g.drawString("GAME OVER", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 - 100);
-            g.drawString("Press any key to continue", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 - 50);
-            g.drawString("Score: " + finalScore, (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2);
+        
+        if (draw == null) {
+            return;
+        }
+        
+        if (isRunning == false && finalScore > 0) {
+            draw.paintScore(g, score);
             
-            if(finalScore > 0) {
-                paintScore(g);
-            }            
             return;
         }
         if (backgroundManager != null) {
-            backgroundManager.paint((Graphics2D) g);
+            draw.drawAllBackgrounds((Graphics2D) g, backgroundManager);
         }
         if (player != null) {
-            player.draw((Graphics2D) g);
+            draw.drawPlayer((Graphics2D) g, player);
         }
         if (obstacleManager != null) {
-            obstacleManager.draw((Graphics2D) g);
+            draw.drawAllObstacles((Graphics2D) g, obstacleManager);
         }
         if (score != null) {
-            score.draw((Graphics2D) g);
+            draw.drawCurrentScore((Graphics2D) g, score);
         }
     }
 

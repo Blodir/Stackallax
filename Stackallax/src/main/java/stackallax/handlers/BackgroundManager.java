@@ -6,6 +6,7 @@
 package stackallax.handlers;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import stackallax.graphics.Background;
 import stackallax.maths.Vector2;
@@ -22,6 +23,8 @@ public class BackgroundManager {
 
     private Background backOne;
     private Background backTwo;
+    
+    private ArrayList<Background> backgrounds;
 
     private Vector2 scrollingSpeed;
 
@@ -31,6 +34,9 @@ public class BackgroundManager {
         scrollingSpeed = new Vector2(-1 * (Game.SPEED / 2), 0);
         backOne.setMovement(scrollingSpeed);
         backTwo.setMovement(scrollingSpeed);
+        backgrounds = new ArrayList<Background>();
+        backgrounds.add(backOne);
+        backgrounds.add(backTwo);
     }
     
     /**
@@ -50,22 +56,15 @@ public class BackgroundManager {
         }
     }
     
+    public ArrayList<Background> getBackgrounds() {
+        return backgrounds;
+    }
+    
     public Background getBackOne() {
         return backOne;
     }
     
     public Background getBackTwo() {
         return backTwo;
-    }
-    
-    /**
-     * Piirtää varastoidut taustat
-     * 
-     * @param g grafiikkamuuttuja jolla piirretään
-     */
-
-    public void paint(Graphics2D g) {
-        backOne.draw(g);
-        backTwo.draw(g);
     }
 }

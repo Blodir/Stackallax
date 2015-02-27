@@ -94,7 +94,6 @@ public class ScoreManager {
         }
         try {
             for (int u : top10) {
-                System.out.println(u);
                 fw.write(u + "\n");
             }
             fw.flush();
@@ -106,16 +105,5 @@ public class ScoreManager {
         } catch (IOException ex) {
             Logger.getLogger(ScoreManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    /**
-     * Piirtää nykyisen pistetilanteen
-     * @param g Grafiikkaolio jolla pisteet piirretään
-     */
-
-    public void draw(Graphics2D g) {
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial", 0, 32));
-        g.drawString("Score: " + score, 0, 25);
     }
 }

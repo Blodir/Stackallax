@@ -77,25 +77,22 @@ public class ObstacleManager {
         int minimumSpawnDistance = Game.SPEED * 21; //jump lasts for 21 frames
         
         if (!obstacles.isEmpty()) {
+            //if there are obstacles in field
             if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > minimumSpawnDistance) {
+                //if the last obstacle is far enough that we should start spawning again
+                
+                //spawn on ground level
                 spawnWithProbability(5 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
+                //spawn an obstacle in 1st layer with small probability
                 spawnWithProbability(1 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT));
-            }
-        } else {
-            //ground level spawn
-            spawnWithProbability(1000, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
-        }
-        
-        //first layer spawn (ei toimi)
-        /*if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > 50 && Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() < 80) {
-            if (obstacles.get(obstacles.size() - 1).getY() == Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT)) {
-                if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > 50) {
-                    spawnWithProbability(1000, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT));
+                //have a chance of spawning an obstacle in 2nd layer if the last spawned obstacle was in 1st layer
+                if (obstacles.get(obstacles.size() - 1).getY() == Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT)) {
+                    spawnWithProbability(1 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (3 * OBSTACLEHEIGHT));
                 }
             }
-        }*/
-        if (obstacles.get(obstacles.size() - 1).getY() == Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT) && Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > minimumSpawnDistance) {
-            spawnWithProbability(1 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (3 * OBSTACLEHEIGHT));
+        } else {
+            //if there is no obstacles, spawn one on ground level
+            spawnWithProbability(1000, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
         }
     }
     
@@ -118,12 +115,6 @@ public class ObstacleManager {
         }
         for (Obstacle removable : removables) {
             obstacles.remove(removable);
-        }
-    }
-    
-    public void draw(Graphics2D g) {
-        for (Obstacle o : obstacles) {
-            o.draw(g);
         }
     }
 }
