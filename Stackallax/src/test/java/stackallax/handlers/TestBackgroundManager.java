@@ -67,8 +67,8 @@ public class TestBackgroundManager {
     @Test
     public void testScrollingSpeed() {
         bm = new BackgroundManager();
-        assertTrue(bm.getBackOne().getMovement().getX() == (-1) * Game.SPEED / 2);
-        assertTrue(bm.getBackTwo().getMovement().getX() == (-1) * Game.SPEED / 2);
+        assertTrue(bm.getBackOne().getMovement().getX() == (-1) * Game.SPEED / 4);
+        assertTrue(bm.getBackTwo().getMovement().getX() == (-1) * Game.SPEED / 4);
     }
     
     @Test

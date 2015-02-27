@@ -21,3 +21,4 @@ huom: opiskelua projektia varten (paljon) ei otettu mukaan tunti määriin
 	* 19.2.2 5 tuntia - spawner + debug + highscore
 * Palautus
 	* 26.2 1 tunti viimeistelyä
+	* 27.2 4 tuntia viimeistelyä
