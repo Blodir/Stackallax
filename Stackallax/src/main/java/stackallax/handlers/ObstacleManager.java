@@ -45,6 +45,7 @@ public class ObstacleManager {
     
     /**
      * Generoi esteet niin monen framen ajaksi kunnes nopeus muuttuu
+     * (ei käytetty)
      */
     
     public void generateLevel() {
@@ -69,8 +70,7 @@ public class ObstacleManager {
     }
     
     /**
-     * Päivittää jokaisen obstaclen sijainnin, huolehtii että ruudulta pois olevat poistetaan sekä kutsuu generateLevel()
-     * @param score
+     * Luo uusia esteitä, kutsutaan joka frame
      */
     
     public void runSpawner() {
@@ -80,7 +80,6 @@ public class ObstacleManager {
             if (Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > minimumSpawnDistance) {
                 spawnWithProbability(5 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - OBSTACLEHEIGHT);
                 spawnWithProbability(1 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT));
-                
             }
         } else {
             //ground level spawn
@@ -97,9 +96,14 @@ public class ObstacleManager {
         }*/
         if (obstacles.get(obstacles.size() - 1).getY() == Game.WINDOWSIZE.height - (2 * OBSTACLEHEIGHT) && Game.WINDOWSIZE.width - obstacles.get(obstacles.size() - 1).getX() > minimumSpawnDistance) {
             spawnWithProbability(1 * Game.SPEED, Game.WINDOWSIZE.width, Game.WINDOWSIZE.height - (3 * OBSTACLEHEIGHT));
-                
         }
     }
+    
+    
+    /**
+     * Päivittää jokaisen obstaclen sijainnin, huolehtii että ruudulta pois olevat poistetaan sekä kutsuu generateLevel()
+     * @param score
+     */
     
     public void update(int score) {
         runSpawner();

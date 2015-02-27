@@ -47,6 +47,12 @@ public class ScoreManager {
     public void setScore(int score) {
         this.score = score;
     }
+    
+    /**
+     * Metodi lukee pistelistan tiedostosta ja palauttaa 10 parasta pistesaalista (tämänhetkinen pistesaalis mukaanlukien)
+     * 
+     * @return top 10 lista parhaista pisteistä
+     */
 
     public int[] getHighscoreList() {
         ArrayList<Integer> allHighscores = new ArrayList<>();
@@ -73,6 +79,10 @@ public class ScoreManager {
 
         return top10;
     }
+    
+    /**
+     * Hakee top 10 pistelistan getHighscoreList() metodin avulla ja kirjoittaa sen tiedostoon
+     */
 
     public void writeHighscores() {
 
@@ -97,22 +107,13 @@ public class ScoreManager {
             Logger.getLogger(ScoreManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * Piirtää nykyisen pistetilanteen
+     * @param g Grafiikkaolio jolla pisteet piirretään
+     */
 
     public void draw(Graphics2D g) {
-        /*if (score > 5000) {
-         g.setColor(Color.BLUE);
-         } else if (score > 4000) {
-         g.setColor(Color.CYAN);
-         } else if (score > 3000) {
-         g.setColor(Color.WHITE);
-         } else if (score > 2000) {
-         g.setColor(Color.YELLOW);
-         } else if (score > 1000) {
-         g.setColor(Color.ORANGE);
-         } else {
-         g.setColor(Color.RED);
-         }
-         */
         g.setColor(Color.BLACK);
         g.setFont(new Font("Arial", 0, 32));
         g.drawString("Score: " + score, 0, 25);

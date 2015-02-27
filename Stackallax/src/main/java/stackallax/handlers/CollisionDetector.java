@@ -52,7 +52,8 @@ public class CollisionDetector {
                     player.getMovement().setY(0);
                 }
                 */
-                if (player.getMovement().getY() > 0) { //if coming from top
+                if (player.getMovement().getY() > 0) { //if player has positive vertical velocity (is going towards the ground)
+                    
                     if ((player.getX() + player.getWidth() - obstacle.getX())/((-1) * obstacle.getMovement().getX()) >
                     (player.getY() + player.getHeight() - obstacle.getY())/((2 * player.getY()) - player.getMovement().getY())) {
                         player.setY(obstacle.getY() - obstacle.getHeight());

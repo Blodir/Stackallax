@@ -136,6 +136,11 @@ public class Game extends JPanel implements Runnable {
         finalScore = score.getScore();
         isRunning = false;
     }
+    
+    /**
+     * Tulostaa highscore listan näytölle
+     * @param g 
+     */
 
     public void paintScore(Graphics g) {
         g.drawString("Highscores: ", (WINDOWSIZE.width / 2) - 150, WINDOWSIZE.height / 2 + 50);
